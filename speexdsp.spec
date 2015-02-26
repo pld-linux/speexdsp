@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	SpeexDSP - biblioteka do przetwarzania mowy towarzysząca kod
 Name:		speexdsp
 Version:	1.2
 %define	subver	rc3
-%define	rel	1
+%define	rel	2
 Release:	0.%{subver}.%{rel}
 Epoch:		1
 License:	BSD
