@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	SpeexDSP - biblioteka do przetwarzania mowy towarzysząca kod
 Name:		speexdsp
 Version:	1.2
 %define	subver	rc3
-%define	rel	1
+%define	rel	2
 Release:	0.%{subver}.%{rel}
 Epoch:		1
 License:	BSD
@@ -18,7 +18,8 @@ URL:		http://www.speex.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	libtool
-Conflicts:	speex < 1.2-rc2
+BuildRequires:	sed >= 4.0
+Conflicts:	speex < 1:1.2-rc2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -34,7 +35,7 @@ Summary:	SpeexDSP library - development files
 Summary(pl.UTF-8):	Pliki dla programistów używających biblioteki SpeexDSP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Conflicts:	speex-devel < 1.2-rc2
+Conflicts:	speex-devel < 1:1.2-rc2
 
 %description devel
 SpeexDSP library - development files.
@@ -47,7 +48,7 @@ Summary:	SpeexDSP static library
 Summary(pl.UTF-8):	Biblioteka statyczna SpeexDSP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Conflicts:	speex-static < 1.2-rc2
+Conflicts:	speex-static < 1:1.2-rc2
 
 %description static
 SpeexDSP static library.
@@ -57,6 +58,9 @@ Biblioteka statyczna SpeexDSP.
 
 %prep
 %setup -q -n %{name}-%{version}%{subver}
+
+# make it not depend on caller's configure checks
+%{__sed} -i -e 's/defined HAVE_STDINT_H/1/' include/speex/speexdsp_config_types.h.in
 
 %build
 %{__libtoolize}
