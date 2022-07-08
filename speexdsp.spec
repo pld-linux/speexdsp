@@ -5,17 +5,17 @@
 Summary:	SpeexDSP - speech processing library that goes along with the Speex codec
 Summary(pl.UTF-8):	SpeexDSP - biblioteka do przetwarzania mowy towarzysząca kodekowi Speex
 Name:		speexdsp
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 Epoch:		1
 License:	BSD
 Group:		Libraries
 Source0:	https://downloads.xiph.org/releases/speex/%{name}-%{version}.tar.gz
-# Source0-md5:	b722df341576dc185d897131321008fc
+# Source0-md5:	e6eb5ddef743a362c8018f260b91dca5
 URL:		https://www.speex.org/
 BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	automake >= 1:1.8
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 Conflicts:	speex < 1:1.2-rc2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,7 +59,7 @@ Biblioteka statyczna SpeexDSP.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
